@@ -36,8 +36,8 @@ The security of RSA relies on the difficulty of factoring large numbers; thus, c
 
 ## Program:
 
-```python
-# RSA Demonstration (Simple Version)
+```
+
 # function to find gcd
 def gcd(a, b):
     while b != 0:
