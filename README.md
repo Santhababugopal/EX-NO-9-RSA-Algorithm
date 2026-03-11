@@ -37,12 +37,59 @@ The security of RSA relies on the difficulty of factoring large numbers; thus, c
 
 ## Program:
 
+```python
+# RSA Demonstration (Simple Version)
+# function to find gcd
+def gcd(a, b):
+    while b != 0:
+        a, b = b, a % b
+    return a
+# function to find modular inverse
+def mod_inverse(e, phi):
+    for d in range(1, phi):
+        if (e * d) % phi == 1:
+            return d
+    return None
 
+# Step 1: choose two prime numbers
+p = int(input("Enter prime number p: "))
+q = int(input("Enter prime number q: "))
+
+# Step 2: compute n
+n = p * q
+
+# Step 3: compute phi
+phi = (p - 1) * (q - 1)
+
+# Step 4: choose e
+e = int(input("Enter public key e (coprime with phi): "))
+
+# check if e is valid
+if gcd(e, phi) != 1:
+    print("e is not coprime with phi. Choose another e.")
+    exit()
+
+# Step 5: compute private key d
+d = mod_inverse(e, phi)
+
+print("Public Key (e, n):", (e, n))
+print("Private Key (d, n):", (d, n))
+
+# Encryption
+m = int(input("Enter message (number < n): "))
+c = (m ** e) % n
+print("Encrypted message:", c)
+
+# Decryption
+m_decrypted = (c ** d) % n
+print("Decrypted message:", m_decrypted)
+```
 
 
 ## Output:
 
+<img width="588" height="295" alt="image" src="https://github.com/user-attachments/assets/167243bf-b778-42aa-b4dc-cd1fa50eafec" />
 
 
 ## Result:
- The program is executed successfully.
+Thus the program to implement RSA Encryption Algorithm is executed successfully.
